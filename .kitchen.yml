@@ -1,0 +1,17 @@
+---
+driver:
+  name: docker
+provisioner:
+  name: chef_solo
+platforms:
+  - name: fedora-20 
+    driver_config:
+      privileged: true
+      run_command: /usr/sbin/init
+      provision_command:
+        - yum install -y tar curl python-setuptools 
+suites:
+  - name: default
+    run_list:
+    - "recipe[grafana]"
+    attributes:
